@@ -58,17 +58,17 @@ st.subheader("⚙️ Input Data Boss")
 
 col1, col2, col3 = st.columns(3)
 with col1:
-    st.session_state.boss = st.selectbox("Pilih Boss:", list(BOSS_RESPAWN.keys()), index=list(BOSS_RESPAWN.keys()).index(st.session_state.boss))
+    st.session_state.boss = st.selectbox("Choose Boss:", list(BOSS_RESPAWN.keys()), index=list(BOSS_RESPAWN.keys()).index(st.session_state.boss))
 with col2:
-    st.session_state.guild = st.selectbox("Guild terakhir yang kill:", ["ID", "PH"], index=["ID", "PH"].index(st.session_state.guild))
+    st.session_state.guild = st.selectbox("Last Guild:", ["ID", "PH"], index=["ID", "PH"].index(st.session_state.guild))
 with col3:
     st.session_state.n = st.number_input("Tampilkan berapa spawn ke depan?", min_value=1, max_value=20, value=st.session_state.n, step=1)
 
 col4, col5 = st.columns(2)
 with col4:
-    st.session_state.kill_end_date = st.date_input("Tanggal Kill End", st.session_state.kill_end_date)
+    st.session_state.kill_end_date = st.date_input("Kill End Date ", st.session_state.kill_end_date)
 with col5:
-    st.session_state.kill_end_time = st.time_input("Waktu Kill End", st.session_state.kill_end_time)
+    st.session_state.kill_end_time = st.time_input("Kill Time", st.session_state.kill_end_time)
 
 # ======================
 # 🧮 Hitung Jadwal
@@ -106,14 +106,15 @@ df = pd.DataFrame(rows)
 # ======================
 # 📊 Output Table
 # ======================
-st.subheader(f"📅 Jadwal Spawn Berikutnya untuk {st.session_state.boss}")
+st.subheader(f"📅 Next Spawn Time for {st.session_state.boss}")
 st.dataframe(df, use_container_width=True)
 
 # ======================
 # 📘 Info Tambahan
 # ======================
-st.caption("""
-📘 **Perhitungan Respawn:**
-- Respawn dihitung dari waktu *Kill End* terakhir + durasi respawn boss.
-- Kill duration dan waktu perpindahan masing-masing ±5 menit.
-""")
+# st.caption("""
+# 📘 **Perhitungan Respawn:**
+# - Respawn dihitung dari waktu *Kill End* terakhir + durasi respawn boss.
+# - Kill duration dan waktu perpindahan masing-masing ±5 menit.
+# """)
+
